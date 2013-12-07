@@ -1,5 +1,5 @@
 define(['jquery','swipe', 'raphael'], function($, swipe, raphael) {
-
+	'use strict';
 	$(document).on('ready pjax:success', function() {
 
 		if($('#page').has('.home').length){

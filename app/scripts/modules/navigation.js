@@ -1,5 +1,5 @@
 define(['jquery', 'localScroll', 'pjax', 'easing'], function($, localScroll, pjax, easing) {
-	
+	'use strict';	
 	var nav = $('ul#menu');
 	var title = $('.left h2');
 	var image = $('.left img.first');

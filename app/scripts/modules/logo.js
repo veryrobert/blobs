@@ -1,5 +1,5 @@
 define(['jquery', 'raphael'], function($, raphael) {
-
+	'use strict';
 	var logoPage = new Raphael(document.getElementById('logo'), 80, 80);
 	var circle = logoPage.circle(40, 40, 31).attr({'stroke-width': '2', fill: '#000000', 'fill-opacity': '0'});
 	var logoB = logoPage.path('M24,35c0,0,5,0,6,0 c2,0,4-1,4-3s-2-3-4-3 M24,23h6 c3,0,3,2,3,3c0,2-2,3-4,3c-2,0-3,0-3,0 M27,23l0,11').attr({'stroke-width': '2'}); 

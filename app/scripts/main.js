@@ -9,19 +9,19 @@ require.config({
 		easing: '../bower_components/jquery.easing/js/jquery.easing'
 	},
 	shim: {
-	  'pjax': {
-        deps: ['jquery']
-      },
-      'scrollTo': {
-        deps: ['jquery']
-      },
-      'localScroll': {
-        deps: ['jquery', 'scrollTo']
-      },
-      'easing': {
-      	deps: ['jquery']
-      }
-    }
+		'pjax': {
+			deps: ['jquery']
+		},
+		'scrollTo': {
+			deps: ['jquery']
+		},
+		'localScroll': {
+			deps: ['jquery', 'scrollTo']
+		},
+		'easing': {
+			gruntdeps: ['jquery']
+		}
+	}
 });
 
 require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'modules/logo', 'modules/navigation', 'modules/slider',  'app'],
