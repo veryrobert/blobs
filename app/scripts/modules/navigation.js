@@ -70,6 +70,12 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 			$('#nav').removeClass('top');
 		}
 
+		$.localScroll({
+			offset: 0,
+			duration: 1000,
+			easing: 'easeInOutQuart'
+		});
+
 	});
 
 	// on the homepage when scrolling move the menu to the top
@@ -95,12 +101,6 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 		$('#nav nav').animate({'height': '75px'}, 150);
 	});
 
-	// init the scrolling for anchor links
-	$.localScroll({
-		offset: 0,
-		duration: 1000,
-		easing: 'easeInOutQuart'
-	});
 
 	// init the pjaxing
 	var duration = 400;
@@ -118,12 +118,13 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 		if($('#page').has('.home').length){
 			var hashName = window.location.href.split('#')[1];
 			$(window).delay(1500).scrollTo($('#' + hashName), 300);
+			$.localScroll({
+				offset: 0,
+				duration: 1000,
+				easing: 'easeInOutQuart'
+			});
 		}
-		$.localScroll({
-			offset: 0,
-			duration: 1000,
-			easing: 'easeInOutQuart'
-		});
+
 		
 	});
 
