@@ -19,12 +19,12 @@ require.config({
 			deps: ['jquery', 'scrollTo']
 		},
 		'easing': {
-			gruntdeps: ['jquery']
+			deps: ['jquery']
 		}
 	}
 });
 
-require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'modules/logo', 'modules/navigation', 'modules/slider',  'app'],
+require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'modules/logo', 'modules/navigation', 'modules/slider', 'app'],
 	function ($, pjax, swipe, raphael, scrollTo, localScroll, easing, logo, navigation, slider, app) {
 
 	'use strict';

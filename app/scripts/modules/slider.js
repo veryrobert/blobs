@@ -16,7 +16,7 @@ define(['jquery','swipe', 'raphael'], function($, swipe, raphael) {
 
 		} else if( $('#page').has('.collections').length){
 			
-			window.spinaker = Swipe(document.getElementById('spinaker'), {
+			window.spinnaker = Swipe(document.getElementById('spinnaker'), {
 				startSlide: 0,
 				speed: 500,
 				auto: 10000,
@@ -49,27 +49,19 @@ define(['jquery','swipe', 'raphael'], function($, swipe, raphael) {
 				transitionEnd: function(index, elem) {}
 			});
 
+			var sliderTextHeight = function(slideNo){
+				var imageHeight = $('.swipe-wrap div[data-index="' + slideNo + '"]').height();
+				$('.text').css({'height': imageHeight});
+			}
+
+			sliderTextHeight(0);
+			$(window).on('resize', function(){
+				sliderTextHeight(0);
+			});
+
+
+
 		}
-
-		var next = new Raphael(document.getElementById('next'), 30, 30);
-		var nextArrow = next.path('M10,10l5,5l-5,5').attr({'stroke-width': '3', 'stroke':'#000', 'stroke-linecap': 'round', 'stroke-linejoin': 'round'});
-		var nextBox = next.rect(0,0,30,30).attr({'fill' : 'red', 'stroke': '0', 'stroke-opacity': '0', 'fill-opacity': '0'});
-
-		nextBox.hover(function(){
-			nextArrow.animate({path:'M5,5l10,10l-10,10'}, 100);
-		}, function(){
-			nextArrow.animate({path:'M10,10l5,5l-5,5'}, 100);
-		});
-
-		var prev = new Raphael(document.getElementById('prev'), 30, 30);
-		var prevArrow = prev.path('M10,10l5,5l-5,5').attr({'stroke-width': '3', 'stroke':'#000', 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}).transform('r180t-5,0');
-		var prevBox = prev.rect(0,0,30,30).attr({'fill' : 'red', 'stroke': '0', 'stroke-opacity': '0', 'fill-opacity': '0'});
-
-		prevBox.hover(function(){
-			prevArrow.animate({path:'M5,5l10,10l-10,10'}, 100);
-		}, function(){
-			prevArrow.animate({path:'M10,10l5,5l-5,5'}, 100);
-		});
 
 	});
 
