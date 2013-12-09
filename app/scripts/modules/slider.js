@@ -2,7 +2,7 @@ define(['jquery','swipe', 'raphael'], function($, swipe, raphael) {
 	'use strict';
 	$(document).on('ready pjax:success', function() {
 
-		if($('#page').has('.home').length){
+		if ( $('#page').has('.home').length ){
 			window.mySwipe = Swipe(document.getElementById('slider'), {
 				startSlide: 0,
 				speed: 500,
@@ -14,7 +14,7 @@ define(['jquery','swipe', 'raphael'], function($, swipe, raphael) {
 				transitionEnd: function(index, elem) {}
 			});
 
-		} else if( $('#page').has('.collections').length){
+		} else if ( $('#page').has('.collections').length ){
 			
 			window.spinnaker = Swipe(document.getElementById('spinnaker'), {
 				startSlide: 0,
@@ -59,10 +59,19 @@ define(['jquery','swipe', 'raphael'], function($, swipe, raphael) {
 				sliderTextHeight(0);
 			});
 
+		} else if ( $('#page').has('.product').length ){
 
-
+			window.product = Swipe(document.getElementById('product-single'), {
+				startSlide: 0,
+				speed: 500,
+				auto: 10000,
+				continuous: true,
+				disableScroll: false,
+				stopPropagation: false,
+				callback: function(index, elem) {},
+				transitionEnd: function(index, elem) {}
+			});
 		}
-
 	});
 
 });

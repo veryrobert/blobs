@@ -55,10 +55,25 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 		
 		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+		var image = 'https://dl-web.dropbox.com/get/Screenshots/marker.png?w=AABu4WJsyMqikEmNtJnw6z3ILrt7BkNocM02siKb7auVaA';
+		
+		var killkenny = new google.maps.Marker({ position: new google.maps.LatLng(53.342452,-6.255803), map: map, icon: image });
+		var killkennyPav = new google.maps.Marker({ position: new google.maps.LatLng(53.453931,-6.219016), map: map, icon: image });
+		var project51 = new google.maps.Marker({ position: new google.maps.LatLng(53.341636,-6.262799), map: map, icon: image });
+		var franjane = new google.maps.Marker({ position: new google.maps.LatLng(53.286307,-6.240591), map: map, icon: image });
+		var place = new google.maps.Marker({ position: new google.maps.LatLng(52.676616,-6.293667), map: map, icon: image });
+		var noelle = new google.maps.Marker({ position: new google.maps.LatLng(53.272258,-7.494246), map: map, icon: image });
+		var elaine = new google.maps.Marker({ position: new google.maps.LatLng(52.835563,-6.929038), map: map, icon: image });
+		var granary = new google.maps.Marker({ position: new google.maps.LatLng(52.376149,-7.924729), map: map, icon: image });
+		var killkennyCork = new google.maps.Marker({ position: new google.maps.LatLng(51.851686,-8.03333), map: map, icon: image });
+		var fiona = new google.maps.Marker({ position: new google.maps.LatLng(52.176024,-8.247539), map: map, icon: image });
+		var midleton = new google.maps.Marker({ position: new google.maps.LatLng(51.913832,-8.172118), map: map, icon: image });
+		var moycullen = new google.maps.Marker({ position: new google.maps.LatLng(53.338971,-9.18153), map: map, icon: image });
+		var catmoon = new google.maps.Marker({ position: new google.maps.LatLng(54.2706,-8.472887), map: map, icon: image });
+		var catmoon = new google.maps.Marker({ position: new google.maps.LatLng(54.2706,-8.472887), map: map, icon: image });
 	}
 
-
-
+	// every time the page loads, both normally and ajaxily do...
 	$(document).on('ready pjax:success', function() {
 		
 		// if its the homepage then nudge the nav down a bit
@@ -70,11 +85,7 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 			$('#nav').removeClass('top');
 		}
 
-		$.localScroll({
-			offset: 0,
-			duration: 1000,
-			easing: 'easeInOutQuart'
-		});
+		$.localScroll({ offset: 0, duration: 1000, easing: 'easeInOutQuart', lazy: true, hash: true});
 
 	});
 
@@ -113,21 +124,21 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 	$('#page').bind('pjax:start', function() {
 		$(this).fadeOut(duration); 
 	}).bind('pjax:end', function() { 
-		$(window).scrollTo(0, 0); 
+		//$.localScroll({ offset: 0, duration: 1000, easing: 'easeInOutQuart'});
+		//$(window).scrollTo(0, 0); 
 		$(this).fadeIn(duration);
 		if($('#page').has('.home').length){
 			var hashName = window.location.href.split('#')[1];
-			$(window).delay(1500).scrollTo($('#' + hashName), 300);
-			$.localScroll({
-				offset: 0,
-				duration: 1000,
-				easing: 'easeInOutQuart'
-			});
+			// setTimeout(function(){
+			// 	$(window).scrollTo($('#' + hashName), 300);
+
+			// }, 500);
 		}
 
 		
 	});
 
+	// highlight the appropriate part of the site the user is on
 	$('nav a').on('click', function(){
 		$('li.heading, li.heading a').removeClass('active');
 		$(this).closest('li.heading').addClass('active');
