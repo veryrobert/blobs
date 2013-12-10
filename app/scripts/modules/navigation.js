@@ -87,6 +87,15 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 
 		$.localScroll({ offset: 0, duration: 1000, easing: 'easeInOutQuart', lazy: true, hash: true});
 
+
+		// init the pjaxing
+		var duration = 400;
+		$('a[data-pjax]').pjax('#page', {
+			fragment: '#page',
+			duration: duration
+		});
+
+
 	});
 
 	// on the homepage when scrolling move the menu to the top
@@ -112,13 +121,6 @@ define(['jquery', 'localScroll', 'pjax', 'easing' ], function($, localScroll, pj
 		$('#nav nav').animate({'height': '75px'}, 150);
 	});
 
-
-	// init the pjaxing
-	var duration = 400;
-	$('a[data-pjax]').pjax('#page', {
-		fragment: '#page',
-		duration: duration
-	});
 
 	// fade in and out the page content and scroll to the right part of the page if its an anchor link
 	$('#page').bind('pjax:start', function() {

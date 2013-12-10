@@ -40,6 +40,8 @@ ul, li { list-style-type: none; display: inline-block; }
 	img { width: 100%; max-width: 100%; } 
 }
 
+.home .swipe-wrap > div img { opacity: .3; }
+
 #menu { display: inline-block; vertical-align: middle; padding-left: 67px; }
 .prev, .next { position: absolute; display: block; top:calc(50% - 20px); width:30px; height:30px; cursor: pointer; }
 .prev { left:50px; }
@@ -54,15 +56,15 @@ ul, li { list-style-type: none; display: inline-block; }
 
 .next::before { border-top: 2px solid #000; content:''; top:0; position: absolute; height:1px; width: 100%; @include transform2d(rotate(45deg) translate(0px, 5px)); @include single-transition(all, ease, .2s); }
 .next::after { border-bottom: 2px solid #000; content:''; bottom:0; position: absolute; height:1px; width: 100%; @include transform2d(rotate(-45deg) translate(0px, -5px)); @include single-transition(all, ease, .2s); }
-.next:hover::before { -webkit-transform:rotate(30deg) translate(0px, 7px); width:100%; }
-.next:hover::after { -webkit-transform:rotate(-30deg) translate(0px, -8px); width:100%; }
+.next:hover::before { @include transform(rotate(30deg) translate(0px, 7px)); width:100%; }
+.next:hover::after { @include transform(rotate(-30deg) translate(0px, -8px)); width:100%; }
 .next:active::before { border-top: 2px solid #e6e6e6; }
 .next:active::after { border-bottom: 2px solid #e6e6e6; }
 
 #about { max-width:1200px; margin: 0 auto; word-spacing: -0.3em; letter-spacing: -0.3em; vertical-align: top; padding-top: 100px;
-	img { max-width: 100%; -webkit-transition: all ease .2s; }
+	img { max-width: 100%; @include transition(all, ease, .2s); }
 }
-#about > * { -webkit-transition: all ease .2s; }
+#about > * { @include transition(all, ease, .2s); }
 
 #collections { max-width:1200px; margin: 0 auto; word-spacing: -0.3em; letter-spacing: -0.3em; vertical-align: top; padding-top: 100px; margin-bottom: 40px; }
 
@@ -134,7 +136,7 @@ ul, li { list-style-type: none; display: inline-block; }
 
 
 .left { display: inline-block; width:32%; padding: 0 20px 0 0; word-spacing: normal; letter-spacing: normal; vertical-align: top;
-	h2 { padding: 20px 0 120px 150px; font:21px/28px "ArnhemPro-Bold", Times, serif; font-weight: normal; letter-spacing: -0.25px; -webkit-transition:all ease .2s; }
+	h2 { padding: 20px 0 120px 150px; font:21px/28px "ArnhemPro-Bold", Times, serif; font-weight: normal; letter-spacing: -0.25px; @include single-transition(all, ease, .2s); }
 	img { float: right; margin-bottom: 40px; }
 }
 .right { display: inline-block; width:66%; word-spacing: normal; letter-spacing: normal;
