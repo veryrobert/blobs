@@ -6,7 +6,8 @@ require.config({
 		raphael: '../bower_components/raphael/raphael',
 		scrollTo: '../bower_components/jquery.scrollTo/jquery.scrollTo',
 		localScroll: '../bower_components/jquery.localScroll/jquery.localScroll',
-		easing: '../bower_components/jquery.easing/js/jquery.easing'
+		easing: '../bower_components/jquery.easing/js/jquery.easing',
+		map: '../scripts/modules/map'
 	},
 	shim: {
 		'pjax': {
@@ -24,8 +25,8 @@ require.config({
 	}
 });
 
-require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'modules/logo', 'modules/navigation', 'modules/slider', 'app'],
-	function ($, pjax, swipe, raphael, scrollTo, localScroll, easing, logo, navigation, slider, app) {
+require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'modules/logo', 'modules/slider', 'modules/navigation', 'map', 'app'],
+	function ($, pjax, swipe, raphael, scrollTo, localScroll, easing, logo, slider, navigation, map, app) {
 
 	'use strict';
 
