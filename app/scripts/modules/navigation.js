@@ -1,4 +1,4 @@
-define(['jquery', 'swipe', 'localScroll', 'pjax', 'easing', 'modules/map' ], function($, swipe, localScroll, pjax, easing, map) {
+define(['jquery', 'swipe', 'localScroll', 'pjax', 'easing', 'map' ], function($, swipe, localScroll, pjax, easing, map) {
 	'use strict';	
 
 	// every time the page loads, both normally and ajaxily do...
