@@ -6,7 +6,7 @@
 ul, li, a, p, h1, h2, h3, h4, h5, span { margin: 0; padding: 0; }
 ::selection, ::-webkit-selection { background: #e6e6e6; color:#000; }
 h1, h2, h3, h4, h5 { -webkit-font-smoothing: antialiased; }
-body { font-family: "ArnhemPro-Normal", Times, serif; color: #333; padding: 20px; margin: 0; }
+body { font-family: "ArnhemPro-Normal", Times, serif; color: #333; padding: 20px; margin: 0; overflow-y: scroll;  }
 ul, li { list-style-type: none; display: inline-block; }
 
 
@@ -20,7 +20,7 @@ ul, li { list-style-type: none; display: inline-block; }
 		a { text-decoration: none; color:#666; @include single-transition(all, ease, .2s); }
 		a.active, a:hover { color:#000; }
 		a.name { color:#000; }
-		li.heading.active { 
+		li.active { 
 			a { color: #000; }
 			ul li a { color:#666; }
 		}
@@ -63,6 +63,7 @@ ul, li { list-style-type: none; display: inline-block; }
 
 #about { max-width:1200px; margin: 0 auto; word-spacing: -0.3em; letter-spacing: -0.3em; vertical-align: top; padding-top: 100px;
 	img { max-width: 100%; @include transition(all, ease, .2s); }
+	.right .text { padding-bottom: 0; }
 }
 #about > * { @include transition(all, ease, .2s); }
 
@@ -150,7 +151,7 @@ ul, li { list-style-type: none; display: inline-block; }
 
 .hovered { opacity: 0.1; @include single-transition(all, ease, 0.2s); }
 
-#contact { max-width:1200px; margin: 0 auto; word-spacing: -0.3em; letter-spacing: -0.3em; vertical-align: top;
+#contact { max-width:1200px; margin: 0 auto; word-spacing: -0.3em; letter-spacing: -0.3em; vertical-align: top; padding-top: 100px;
 	a { text-decoration: none; color: #000; position: relative; }
 	
 	a::after { opacity:0; position: absolute; content:''; border-bottom: 1px solid #000; width: 100%; height:1px; top:20px; left: 0px; }
@@ -170,10 +171,24 @@ li.heading:hover {
 	#nav { background: rgba(250, 250, 250, 0.9); }
 	#nav.top { top: 0px; }
 	body { padding-top: 155px; }
-	#about, #collections, #stockists, #press { padding-top: 0px; }
+
+	#about, #contact, #collections, #stockists, #press { padding-top: 0px; }
+	.about #about .left h2 { padding-top: 60px; }
+	.shop #shop, .product #product  { padding-top: 20px; }
+	
+	#single .left img { display: block; }
+	#single .right {
+		h2, h3, p { padding-left:40px; padding-right: 60px; }
+	} 
+	
+	#product .left {
+		width: 100%;
+	}
+	
 	#collections, #stockists, #press { 
 		h2 { padding-top: 0px; } 
 	}
+
 	.left { width: 100%;
 		h2 { padding-bottom: 0; padding-top: 140px; }
 		img { display: none; }
@@ -184,5 +199,60 @@ li.heading:hover {
 		.text { padding-left: 150px; padding-right: 170px; }
 		ul { padding-left: 150px; }
 	}
+	#listing .three { padding-left: 30px;
+		img { max-width: 90%; }
+	}
+
+	#listing .four { padding-left: 60px;
+		img { max-width: 90%; }
+	}
 }
 
+@media screen and (max-width: 768px) {
+	.left { width: 100%;
+		h2 { padding: 40px 40px 10px 40px; }
+		img { display: none; }
+	}
+	.right { width: 100%; 
+		h3 { padding: 40px; }
+		img { width: 100%; max-height: inherit; }
+		.text { padding: 40px; }
+		ul { padding: 40px; }
+	}
+	.text .right p:last-child { display:none; }
+
+	#single .left { width: 100%; padding: 7%;
+		img { display: block; min-width: 100%; }
+	}
+	#single .right { width: 100%; }
+}
+
+@media screen and (max-width: 450px) {
+	#menu { padding-left: 15px; }
+	#menu > li:first-child { opacity:0; width: 0; }
+	.text .right p { display: none; }
+	.text .left h3 { text-align: center; }
+	.next, .prev { display: none; }
+	.collections .swipe-wrap > div img { width: 100%; }
+	#map { display: none; }
+	#listing { padding-top: 0;
+		ul { width: 100%; }
+	}
+	.about #about .left h2, .contact #contact .left h2 { padding-top: 0; }
+	#stockists { margin-bottom: -40px; }
+	#listing .four { padding-left: 30px;
+		.item { width: 50%; }
+	}
+	#listing .three { padding: 20px;
+		.item { width: 100%;
+			img { max-width: 100%; }
+		}
+	}
+	#shop .left, #product .left {
+		padding: 0 20px 20px 20px;
+		width: 100%;
+	}
+	#single .right {
+		h2, h3, p { padding-left:40px; padding-right: 40px; }
+	} 
+}

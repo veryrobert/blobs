@@ -54,17 +54,10 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 			logoE.animate({stroke: '#000'}, 100);
 		});
 
-		// init the pjaxing
-		$('a[data-pjax]').pjax('#page', {
-			fragment: '#page',
-			duration: 400
-		});
-
-		if ( $('#page').has('.home').length ){
-			// if its the homepage then nudge the nav down a bit
+		if ( $('.home').length > 0){
+			console.log('worked');
 			$('#nav').addClass('top');
-			$('#menu > li:nth-child(2)').find('a').attr('href').replace('index.html', '');
-			$('#menu > li:nth-child(2)').find('a').removeAttr('data-pjax');
+			
 			window.mySwipe = Swipe(document.getElementById('slider'), {
 				startSlide: 0,
 				speed: 500,
@@ -79,16 +72,18 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 			// when scrolled move the menu to the top
 			$(window).scroll(function(){
-				var scrollPos = window.pageYOffset;
-				var scrollDist = 100;
-				if(scrollPos > scrollDist) {
-					$('#nav').removeClass('top');
-				} else {
-					$('#nav').addClass('top');
-				}	
+				if( $('.home').length > 0 ){
+					var scrollPos = window.pageYOffset;
+					var scrollDist = 100;
+					if(scrollPos > scrollDist) {
+						$('#nav').removeClass('top');
+					} else {
+						$('#nav').addClass('top');
+					}	
+				}
 			});
 
-		} else if ( $('#page').has('.collections').length ){
+		} else if (  window.location.href.indexOf('collections') > -1 ){
 			
 			window.spinnaker = Swipe(document.getElementById('spinnaker'), {
 				startSlide: 0,
@@ -118,6 +113,8 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 				callback: function(index, elem) {},
 				transitionEnd: function(index, elem) {} });
 
+			$('#nav').removeClass('top');
+			
 			var sliderTextHeight = function(slideNo){
 				var imageHeight = $('.swipe-wrap div[data-index="' + slideNo + '"]').height();
 				$('.text').css({'height': imageHeight});
@@ -132,8 +129,9 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 			$('#karelain').hide().fadeIn(1000);
 			$('#topaz').hide().fadeIn(1000);
 
-		} else if ( $('#page').has('.product').length ){
+		} else if ( window.location.href.indexOf('product') > -1 ) {
 
+			$('#nav').removeClass('top');
 			window.product = Swipe(document.getElementById('product-single'), {
 				startSlide: 0,
 				speed: 500,
@@ -146,75 +144,72 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 			$('#product-single').hide().fadeIn(1000);				
 
+		} else if( window.location.href.indexOf('stockists') > -1 ) {
+
+			$('#nav').removeClass('top');
+			gmaps();
+
+		} else if( window.location.href.indexOf('shop') > -1 || window.location.href.indexOf('press') > -1 ) {
+
+			$('#nav').removeClass('top');
 		}
 
-		$.localScroll({ offset: 0, duration: 1000, easing: 'easeInOutQuart'});
+		// init the pjaxing
+		$('a[data-pjax]').pjax('#page', {
+			fragment: '#page',
+			duration: 400
+		});
 
+		$.localScroll({ offset: 0, duration: 1000, easing: 'easeInOutQuart' });
 
 	});
 
 
 
-	$('#page').on('pjax:success', function() {
+	// fade in and out the page content and scroll to the right part of the page if its an anchor link
+	$('#page').on('pjax:start', function() {
+		
+		$(this).fadeOut(400); 
 
-		console.log('pjax:success');
+	}).on('pjax:success', function() { 
 
+		console.log('pjax:success'); 
+		
+		$(this).fadeIn(400);
+		
 		// if its the homepage then nudge the nav down a bit
-		if($('#page').has('.home').length){ 
+		if( $('.home').length > 0 ){ 
+	
 			$('#nav').addClass('top');
-			$('#menu > li:nth-child(2)').find('a').removeAttr('data-pjax');
-			
-		} else if($('#page').has('.stockists').length) {
 
-			$('#menu > li:nth-child(2)').find('a').attr('data-pjax');
-			gmaps();
-			('#nav').removeClass('top');
-		} else {	
-
-			$('#menu > li:nth-child(2)').find('a').attr('data-pjax');
-			$('#nav').removeClass('top');
-		}
-
-		// when scrolled move the menu to the top
-		$(window).scroll(function(){
-			if($('#page').has('.home').length){ 
-				var scrollPos = window.pageYOffset;
-				var scrollDist = 100;
-				if(scrollPos > scrollDist) {
-					$('#nav').removeClass('top');
-				} else {
-					$('#nav').addClass('top');
+			// when scrolled move the menu to the top
+			$(window).scroll(function(){
+				if( $('.home').length > 0 ){
+					var scrollPos = window.pageYOffset;
+					var scrollDist = 100;
+					if(scrollPos > scrollDist) {
+						$('#nav').removeClass('top');
+					} else {
+						$('#nav').addClass('top');
+					}
 				}
-			}
-		});
-
-
-		// fade in and out the page content and scroll to the right part of the page if its an anchor link
-		$('#page').on('pjax:start', function() {
+			});
 			
-			$(this).fadeOut(400); 
+		} else if( window.location.href.indexOf('stockists') > -1 ) {
 
-		}).on('pjax:success', function() { 
+			$('#nav').removeClass('top');
+			gmaps();
+			
+		}  else if( window.location.href.indexOf('shop') > -1 || window.location.href.indexOf('press') > -1 || window.location.href.indexOf('collections') > -1 || window.location.href.indexOf('product') > -1  || window.location.href.indexOf('about') > -1 || window.location.href.indexOf('contact') > -1 ) {	
 
-			$.localScroll({ offset: 0, duration: 1000, easing: 'easeInOutQuart'});
-			$(window).scrollTo(0, 0); 
-			$(this).fadeIn(400);
-			if ( window.location.href.indexOf('index') > -1 ) {
-				
-				var hashName = window.location.href.split('#')[1];
-				
-				console.log(hashName);
-				$(window).scrollTo($('#' + hashName), 300);
-
-			}
-
-		});
-
+			$('#nav').removeClass('top');
+		
+		} 
 
 		// Timeout for swipes to load
 		setTimeout(function(){
 
-			if ( $('#page').has('.home').length ){
+			if ( $('.home').length > 0 ){
 
 				window.mySwipe = Swipe(document.getElementById('slider'), {
 					startSlide: 0,
@@ -228,7 +223,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 				
 				$('#slider').hide().fadeIn(1000);
 
-			} else if ( $('#page').has('.collections').length ){
+			} else if ( window.location.href.indexOf('collections') > -1 ){
 				
 				window.spinnaker = Swipe(document.getElementById('spinnaker'), {
 					startSlide: 0,
@@ -272,7 +267,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 				$('#karelain').hide().fadeIn(1000);
 				$('#topaz').hide().fadeIn(1000);
 
-			} else if ( $('#page').has('.product').length ){
+			} else if ( window.location.href.indexOf('product') > -1 ){
 
 				window.product = Swipe(document.getElementById('product-single'), {
 					startSlide: 0,
@@ -289,25 +284,29 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 			}
 
 		}, 500);
+
+	});
+
+
+	// highlight the appropriate part of the site the user is on
+	$('nav a').on('click', function(){
+		$('li.heading, li.heading a, li , a').removeClass('active');
+		$(this).closest('#menu > li').addClass('active');
+
 	});
 
 
 	// Vary the nav height when interacting
 	var navHeight = $('#nav nav').height();
-	$('li.heading').on('mouseenter', function(){
+	$('#menu > li.heading, #menu > li').on('mouseenter', function(){
 		var subNavHeight = $(this).find('ul').height();
-		$('#nav nav').animate({'height': (navHeight + subNavHeight - 30)}, 150);
+		$('#nav nav').animate({'height': (navHeight + ((subNavHeight > 0) ? subNavHeight - 30 : 0)) }, 150);
 	});
 	$('nav').on('mouseleave', function(){
 		$('#nav nav').animate({'height': '75px'}, 150);
 	});
 
 
-	// highlight the appropriate part of the site the user is on
-	$('nav a').on('click', function(){
-		$('li.heading, li.heading a').removeClass('active');
-		$(this).closest('li.heading').addClass('active');
-	});
 
 
 });

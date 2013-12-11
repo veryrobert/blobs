@@ -10,7 +10,9 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="stylesheet" href="styles/0c657550.main.css">
+	<!-- build:css(.tmp) styles/main.css -->
+	<link rel="stylesheet" href="styles/style.css">
+	<!-- endbuild -->
 </head>
 <body>
 	<!--[if lt IE 10]>
@@ -21,38 +23,28 @@
 		<nav>
 			<a id="logo" href="index.html"></a>
 			<ul id="menu">
-				<li><a class="name" data-pjax="" href="index.html">Bl&aacute;ith&iacute;n Ennis</a></li>
-				<li class="heading"><a data-pjax="" href="index.html" class="active">Profile</a>
+				<li><a class="name" data-pjax href="index.html">Bl&aacute;ith&iacute;n Ennis</a></li>
+				<li class="heading"><a data-pjax href="index.html" class="active">Profile</a>
 					<ul>
-						<li><a data-pjax="" href="about.html">About</a></li>
-						<li><a data-pjax="" href="contact.html">Contact</a></li>
+						<li><a data-pjax href="about.html">About</a></li>
+						<li><a data-pjax href="contact.html">Contact</a></li>
 					</ul>
 				</li>
 				<li class="heading"><a href="#">Work</a>
 					<ul>
-						<li><a data-pjax="" href="collections.html">Collections</a></li>
-						<li><a data-pjax="" href="stockists.html">Stockists</a></li>
-						<li><a data-pjax="" href="press.html">Press</a></li>
+						<li><a data-pjax href="collections.html">Collections</a></li>
+						<li><a data-pjax href="stockists.html">Stockists</a></li>
+						<li><a data-pjax href="press.html">Press</a></li>
 					</ul>
 				</li>
-				<li><a data-pjax="" href="shop.html">Shop</a></li>
+				<li><a data-pjax href="shop.html">Shop</a></li>
 			</ul>
 		</nav>
 	</div>
 	
 	<div id="page">
 		
-		<div class="home">
-
-			<div id="slider" class="swipe">
-				<div class="swipe-wrap">
-					<div><img src="http://placekitten.com/g/1200/700" alt=""></div>
-					<div><img src="http://placekitten.com/g/1200/700" alt=""></div>
-					<div><img src="http://placekitten.com/g/1200/700" alt=""></div>
-				</div>
-				<div class="prev" onclick="mySwipe.prev()"></div>
-				<div class="next" onclick="mySwipe.next()"></div>
-			</div>
+		<div class="about">
 
 			<div id="about">
 				<div class="left">
@@ -83,19 +75,11 @@
 				</div>
 			</div>
 
-			<div id="contact">
-				<div class="left">
-					<h2>Contact</h2>
-				</div>
-				<div class="right">
-					<div class="text">
-						<p>For information, sales or PR please contact Blaithin at <br><a href="#">hello@blaithinennis.com</a><br>087 767 6026</p>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjJvhPDm3ChhDgLEVFLZryprOgVWyCBdg&sensor=false"></script>
-	<script data-main="scripts/6a258b70.main" src="bower_components/requirejs/require.js"></script>
+	<!-- build:js scripts/main.js -->
+	<script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+	<!-- endbuild -->
 </body>
 </html>
