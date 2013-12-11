@@ -1,4 +1,4 @@
-define(['modules/navigation'], function(navigation) {
+define([], function(navigation) {
 	'use strict';
-	console.log();
+	
 });
