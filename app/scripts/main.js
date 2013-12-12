@@ -8,7 +8,7 @@ require.config({
 		localScroll: '../bower_components/jquery.localScroll/jquery.localScroll',
 		easing: '../bower_components/jquery.easing/js/jquery.easing',
 		map: '../scripts/modules/map'
-	}/*,
+	},
 	shim: {
 		'pjax': {
 			deps: ['jquery']
@@ -22,7 +22,7 @@ require.config({
 		'easing': {
 			deps: ['jquery']
 		}
-	}*/
+	}
 });
 
 require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'map'],
