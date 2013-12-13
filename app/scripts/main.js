@@ -7,7 +7,9 @@ require.config({
 		scrollTo: '../bower_components/jquery.scrollTo/jquery.scrollTo',
 		localScroll: '../bower_components/jquery.localScroll/jquery.localScroll',
 		easing: '../bower_components/jquery.easing/js/jquery.easing',
+		fastClick: '../bower_components/jquery-fast-click/jQuery.fastClick',
 		map: '../scripts/modules/map'
+
 	},
 	shim: {
 		'pjax': {
@@ -21,12 +23,15 @@ require.config({
 		},
 		'easing': {
 			deps: ['jquery']
+		},
+		'fastClick': {
+			deps: ['jquery']
 		}
 	}
 });
 
-require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'map'],
-	function ($, pjax, swipe, raphael, scrollTo, localScroll, easing, map) {
+require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easing', 'fastClick', 'map'],
+	function ($, pjax, swipe, raphael, scrollTo, localScroll, easing, fastClick, map) {
 	'use strict';
 
 
@@ -53,6 +58,26 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 			logoB.animate({stroke: '#000'}, 100);
 			logoE.animate({stroke: '#000'}, 100);
 		});
+
+
+
+			if ($(window).width() <= 450){	
+				console.log('doing some shit');
+				circle.animate({'fill-opacity': '1'}, 20);
+				slash.animate({stroke: '#ffffff'}, 20);
+				logoB.animate({stroke: '#ffffff'}, 20);
+				logoE.animate({stroke: '#ffffff'}, 20)
+
+
+			}	
+			else {
+				circle.animate({'fill-opacity': '0'}, 20);
+				slash.animate({stroke: '#000'}, 20);
+				logoB.animate({stroke: '#000'}, 20);
+				logoE.animate({stroke: '#000'}, 20);
+			}
+	
+
 
 		if ( $('.home').length > 0){
 			console.log('worked');
