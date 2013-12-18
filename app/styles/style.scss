@@ -877,8 +877,30 @@ li.facebook {
 
 @media screen and (max-width: 450px) {
 
-.right  h3, .right .text, .left h2, img.third, .right ul, #listing .four, #listing .three   {
-padding:16px 0px;
+.right  h3, .right .text, .left h2, img.third, .right ul, #listing .four, #listing .three,   {
+  padding:16px 0px;
+}
+
+#single .right h3 {
+  margin-bottom: 16px;
+}
+
+#single {
+  padding-top: 0px;
+}
+
+#single .left {
+  padding: 0px;
+}
+
+
+#single .right h3, 
+ #single .right p {
+  padding:0px 0px;
+}
+
+#single .right h2 {
+  padding: 0 0 16px 0;
 }
 
 .left h2,  {
