@@ -61,22 +61,46 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 
 
-			if ($(window).width() <= 450){	
-				console.log('doing some shit');
-				circle.animate({'fill-opacity': '1'}, 20);
-				slash.animate({stroke: '#ffffff'}, 20);
-				logoB.animate({stroke: '#ffffff'}, 20);
-				logoE.animate({stroke: '#ffffff'}, 20)
+		if ($(window).width() <= 450){	
+			circle.animate({'fill-opacity': '1'}, 20);
+			slash.animate({stroke: '#ffffff'}, 20);
+			logoB.animate({stroke: '#ffffff'}, 20);
+			logoE.animate({stroke: '#ffffff'}, 20)
 
 
-			}	
-			else {
-				circle.animate({'fill-opacity': '0'}, 20);
-				slash.animate({stroke: '#000'}, 20);
-				logoB.animate({stroke: '#000'}, 20);
-				logoE.animate({stroke: '#000'}, 20);
-			}
+		}	
+		else {
+			circle.animate({'fill-opacity': '0'}, 20);
+			slash.animate({stroke: '#000'}, 20);
+			logoB.animate({stroke: '#000'}, 20);
+			logoE.animate({stroke: '#000'}, 20);
+		}
 	
+
+
+		if(checkDevice() === true) {
+
+			var navHeight = $('#nav nav').height();
+
+			$('.noMobLink').removeAttr('href');
+
+			$('.heading').on('click', function(){
+				$(this).addClass('clicked');
+				$('#menu > li.heading, #menu > li').on('click', function(){
+					var subNavHeight = $(this).find('ul').height();
+					$('#nav nav').animate({'height': (navHeight + ((subNavHeight > 0) ? subNavHeight - 30 : 0)) }, 150);
+				});
+			});
+
+			$('#page').on('pjax:success', function(){
+				$('.heading').removeClass('clicked');
+				$('#nav nav').animate({'height': '75px'}, 150);
+			});
+
+		}
+
+
+
 
 
 		if ( $('.home').length > 0){
@@ -330,6 +354,22 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 	$('nav').on('mouseleave', function(){
 		$('#nav nav').animate({'height': '75px'}, 150);
 	});
+
+
+
+
+	function checkDevice(){
+	    return (
+	        (navigator.userAgent.toLowerCase().indexOf("ipad") > -1) ||
+	        (navigator.userAgent.toLowerCase().indexOf("iphone") > -1) ||
+	        (navigator.platform.toLowerCase().indexOf("android") > -1)||
+	        (navigator.userAgent.toLowerCase().indexOf("webOS") > -1) ||
+	        (navigator.userAgent.toLowerCase().indexOf("blackberry") > -1) ||
+	        (navigator.userAgent.toLowerCase().indexOf("IEMobile") > -1) ||
+	        (navigator.userAgent.toLowerCase().indexOf("opera mini") > -1)
+	    );
+	}
+
 
 
 

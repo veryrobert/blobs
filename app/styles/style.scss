@@ -917,6 +917,10 @@ padding-right: 10px;
 
 }
 
+#nav {
+  padding: 10px 20px;
+}
+
 .collections .swipe-wrap > div .text {
   width: 100%;
 }
@@ -930,23 +934,67 @@ padding-right: 10px;
 }
 
 body {
-  padding-top: 175px;
+  padding-top: 140px;
 }
 
 
 #menu {
-height: 65px;
+height: 70px;
 }
 
 
-// #logo {
-//   background: aqua;
-//   -webkit-transform: scale(0.9);
-// }
+#logo {
+  -webkit-transform: scale(0.9);
+  transform-origin:0% 0%;
 
-// #logo svg {
-//   -webkit-transform: scale(0.9);
-// }
+}
+
+#listing {
+  ul {
+    padding-bottom: 0px;
+  }
+    ul:last-child {
+      padding-top: 0px;
+    }
+}
+
+#shop .left {
+
+text-align: center;
+
+}
+
+#shop ul {
+margin: 0 auto;
+
+li a {
+  font-size: 18px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+}
+
+#listing {
+  font-size: 18px;
+}
+
+
+li.heading:hover {
+  ul {
+    opacity: 0;
+    position: absolute;
+  }
+}
+
+
+li.heading.clicked {
+  ul {
+    opacity: 1;
+    position: absolute;
+  }
+}
+
 
 
 }
