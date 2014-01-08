@@ -78,6 +78,10 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 	
 
 
+
+	
+
+
 		if(checkDevice() === true) {
 
 			var navHeight = $('#nav nav').height();
@@ -100,12 +104,23 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		}
 
 
-
+		if ($('.home').length > 0) {
+				$(window).on('scroll', function(){
+					if ($(window).scrollTop() > $('#slider').height()){
+						$('#menu li a').removeClass('white');
+					} else {
+						$('#menu li a').addClass('white');
+					}
+				});
+		}
 
 
 		if ( $('.home').length > 0){
 			console.log('worked');
+
 			$('#nav').addClass('top');
+
+			$('#menu li a').addClass('white');
 			
 			window.mySwipe = Swipe(document.getElementById('slider'), {
 				startSlide: 0,
@@ -118,6 +133,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 				transitionEnd: function(index, elem) {} });
 			
 			$('#slider').hide().fadeIn(1000);
+
 
 			// when scrolled move the menu to the top
 			$(window).scroll(function(){
@@ -181,6 +197,9 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		} else if ( window.location.href.indexOf('product') > -1 ) {
 
 			$('#nav').removeClass('top');
+
+			$('#menu li a').removeClass('white');
+
 			window.product = Swipe(document.getElementById('product-single'), {
 				startSlide: 0,
 				speed: 500,
@@ -196,11 +215,13 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		} else if( window.location.href.indexOf('stockists') > -1 ) {
 
 			$('#nav').removeClass('top');
+			$('#menu li a').removeClass('white');
 			gmaps();
 
 		} else if( window.location.href.indexOf('shop') > -1 || window.location.href.indexOf('press') > -1 ) {
 
 			$('#nav').removeClass('top');
+			$('#menu li a').removeClass('white');
 		}
 
 		// init the pjaxing
@@ -223,13 +244,37 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 	}).on('pjax:success', function() { 
 
 		console.log('pjax:success'); 
+
+
+		if ($('.home').length > 0) {
+				$(window).on('scroll', function(){
+					if ($(window).scrollTop() > $('#slider').height()){
+						$('#menu li a').removeClass('white');
+					} else {
+						$('#menu li a').addClass('white');
+					}
+				});
+		} else {
+
+				$(window).on('scroll', function(){
+
+					if ($(window).scrollTop() < 0) {
+						$('#menu li a').removeClass('white');
+					} 
+				});
+
+		}
+
 		
 		$(this).fadeIn(400);
+
 		
 		// if its the homepage then nudge the nav down a bit
 		if( $('.home').length > 0 ){ 
 	
 			$('#nav').addClass('top');
+			$('#menu li a').addClass('white');
+
 
 			// when scrolled move the menu to the top
 			$(window).scroll(function(){
@@ -238,8 +283,10 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 					var scrollDist = 100;
 					if(scrollPos > scrollDist) {
 						$('#nav').removeClass('top');
+
 					} else {
 						$('#nav').addClass('top');
+						$('#menu li a').removeClass('white');
 					}
 				}
 			});
@@ -247,13 +294,22 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		} else if( window.location.href.indexOf('stockists') > -1 ) {
 
 			$('#nav').removeClass('top');
+			$('#menu li a').removeClass('white');
 			gmaps();
 			
-		}  else if( window.location.href.indexOf('shop') > -1 || window.location.href.indexOf('press') > -1 || window.location.href.indexOf('collections') > -1 || window.location.href.indexOf('product') > -1  || window.location.href.indexOf('about') > -1 || window.location.href.indexOf('contact') > -1 ) {	
+		}  else if( window.location.href.indexOf('shop') > -1 ) {	
 
 			$('#nav').removeClass('top');
+			$('#menu li a').removeClass('white');
+			// displayResults(results);
+			// Refresh Snipcart products
+			Snipcart.do("refreshProducts");
+		    console.log('shop functions init');
 		
-		} 
+		} else if (window.location.href.indexOf('press') > -1 || window.location.href.indexOf('collections') > -1 || window.location.href.indexOf('product') > -1  || window.location.href.indexOf('about') > -1 || window.location.href.indexOf('contact') > -1) {
+			$('#nav').removeClass('top');
+			$('#menu li a').removeClass('white');
+		}
 
 		// Timeout for swipes to load
 		setTimeout(function(){

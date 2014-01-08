@@ -11,6 +11,11 @@
 	<meta name="viewport" content="width=device-width">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<!-- build:css(.tmp) styles/main.css -->
+
+	<link id="snipcart-theme" type="text/css"
+    href="http://blobs/styles/snipcart.css" 
+    rel="stylesheet">
+
 	<link rel="stylesheet" href="styles/style.css">
 	<!-- endbuild -->
 </head>
@@ -72,8 +77,19 @@
 					<h2>Topaz</h2>
 					<h3>Small Four Strand Earrings<br/>&euro;65</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam veniam ratione ex quod repellendus asperiores quos! Ab vero quas quaerat.</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, dolor, incidunt earum omnis modi minima nisi quam porro voluptatum eius facilis soluta provident culpa doloribus magnam rerum aliquid recusandae ullam quia eaque sapiente hic voluptate! Quisquam sed sapiente quis sint.</p>
-					<p><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, ut!</em> <a href="#buy" class="buyme">Buy Now</a></p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, dolor, incidunt earum omnis modi minima nisi quam porro voluptatum eius facilis soluta provident culpa doloribus magnam rerum aliquid recusandae ullam quia eaque sapiente hic voluptate! Quisquam sed sapiente quis sint.</p>	
+					<p><em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, ut!</em> 
+
+						<a href="#" 
+                 class="snipcart-add-item buyme"
+                 data-item-max-quantity="5"
+                 data-item-price="99"
+                 data-item-id="necklace"
+                 data-item-name="Necklace"
+                 data-item-description="<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quasi, libero iure odit quidem consequuntur asperiores! Adipisci, expedita corporis labore.</p>"
+                 data-item-url="http://127.0.0.1:9000/product.html">
+                 Buy Now
+              </a>
 					
 				</div>
 			</div>
@@ -123,7 +139,12 @@
 	</div>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjJvhPDm3ChhDgLEVFLZryprOgVWyCBdg&sensor=false"></script>
 	<!-- build:js scripts/main.js -->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+
 	<script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
-	<!-- endbuild -->
+
+	<script type='text/javascript' id='snipcart' data-api-key='NjA0NzhmYjMtNjBlNi00MGM3LWJiYmItM2Y2NzQwMzkzNDk5' src='https://app.snipcart.com/scripts/snipcart.js'></script>
+
 </body>
 </html>

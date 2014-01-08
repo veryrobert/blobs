@@ -58,6 +58,113 @@
 				</div>
 			</div>
 
+<script>
+		
+		function gmaps() {
+		var styles = [
+		{
+		"elementType": "labels",
+		"stylers": [
+		{ "visibility": "off" }
+		]
+		},{
+		"featureType": "water",
+		"stylers": [
+		{ "color": "#999eae" }
+		]
+		},{
+		"featureType": "road",
+		"stylers": [
+		{ "visibility": "on" },
+		{ "color": "#d2d0d2" }
+		]
+		},{
+		"featureType": "administrative",
+		"stylers": [
+		{ "visibility": "off" }
+		]
+		},{
+		"featureType": "landscape",
+		"stylers": [
+		{ "visibility": "on" },
+		{ "color": "#fbfafa" }
+		]
+		},{
+		"featureType": "poi",
+		"stylers": [
+		{ "visibility": "on" },
+		{ "color": "#daf3da" }
+		]
+		},{
+		"featureType": "road",
+		"elementType": "labels",
+		"stylers": [
+		{ "visibility": "off" }
+		]
+		}
+		];
+
+
+		var mapOptions = {
+			center: new google.maps.LatLng(53.65115,-8.307381),
+			zoom: 7,
+			disableDefaultUI: true,
+			styles: styles,
+			scrollwheel: false
+		};
+
+		
+		
+		
+
+		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		var markerIcon = '../images/marker.png';
+
+		var locations = [
+			['locationOne', 53.342452,-6.255803],
+			['locationTwo', 54.2706,-8.472887],
+			['locationThree', 53.338971,-9.18153]
+		];
+
+
+		var markers, i;
+
+		// var stockists = new google.maps.Marker({ 
+		// 	position: new google.maps.LatLng(locations[0][1],locations[0][2]), 
+		// 	map: map, 
+		// 	icon: markerIcon 
+		// });
+
+
+		for (i = 0; i < locations.length; i++) {  
+
+	  		markers = new google.maps.Marker({ 
+				position: new google.maps.LatLng(locations[i][1],locations[i][2]),
+				map: map, 
+				icon: markerIcon 
+			});
+
+	      	var infowindow = new google.maps.InfoWindow({
+	      		content: '<div><h3>Location Title</h3><p>Kilkenny Design, Nassau Street.</p><p>email address</p><p>Website Link</p></div>'
+	      	});
+
+	      	google.maps.event.addListener(markers, 'click', (function(markers, i) {
+	        return function() {
+	          infowindow.open(map, markers);
+	        }
+	      	})(markers, i));
+
+      	}
+
+	}
+
+
+
+</script>
+
+
+
+
 			<div id="map">
 				
 			</div>

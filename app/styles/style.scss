@@ -64,14 +64,17 @@ ul, li {
     max-width: 1200px;
     margin: 0 auto;
     h1, li {
-      font: 16px/23px "ArnhemPro-Normal", Times, serif;
+      font: 18px/23px "ArnhemPro-Normal", Times, serif;
       padding: 0px 22px 5px 0;
     }
     a {
       text-decoration: none;
-      color: #666;
+     color: rgb(0,0,0);
       @include single-transition(all, ease, 0.2s);
+      -webkit-font-smoothing: antialiased;
     }
+
+ 
     a.active, a:hover {
       color: #000;
     }
@@ -81,13 +84,19 @@ ul, li {
     li.active {
       a {
         color: #000;
+
       }
       ul li a {
-        color: #666;
+        color: rgb(0,0,0);
+        font-weight: lighter;
+        -webkit-font-smoothing: antialiased;
       }
     }
   }
 }
+
+  #nav nav a.white { color: #fff; }
+  #nav nav a.name { color: #000; }
 
 #nav.top {
   top: 70px;
@@ -114,6 +123,11 @@ ul, li {
 }
 
 .slider-text {
+
+color: #fff;
+
+-webkit-font-smoothing: antialiased;
+
   position: absolute;
   bottom: 20%;
   left: 18%;
@@ -121,6 +135,7 @@ ul, li {
   font: 16px/23px "ArnhemPro-Normal", Times, serif;
   .strong {
     font-family: "ArnhemPro-Bold", Times, serif;
+    color: #000;
   }
   a {
     display: block;
@@ -168,7 +183,7 @@ ul, li {
 }
 
 .home .swipe-wrap > div img {
-  opacity: .3;
+  opacity: 1;
 }
 
 #menu {
@@ -715,9 +730,31 @@ li.heading:hover {
   .collections .swipe-wrap > div .text .right p {
     padding-left: 13%;
   }
+
+
 }
 
+@media screen and (max-width: 1250px) { 
+
+  #nav nav {
+
+  width: 940px;
+
+  }
+
+}
+
+@media screen and (max-width: 960px) {
+
+
+  #nav nav a.white { color: #000; }
+
+}
+
+
 @media screen and (max-width: 768px) {
+
+
   .left {
     width: 100%;
     h2 {
@@ -770,7 +807,23 @@ li.heading:hover {
   .mob-hidden {
     display: none;
   }
+
+#nav nav a  {
+  color: #000;
 }
+
+}
+
+
+
+@media screen and (max-width: 550px) {
+
+#nav nav h1, #nav nav li {
+  font-size: 16px;
+}
+  
+}
+
 
 @media screen and (max-width: 450px) {
   #menu {
