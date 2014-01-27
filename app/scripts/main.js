@@ -99,6 +99,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 			$('#page').on('pjax:success', function(){
 				$('.heading').removeClass('clicked');
 				$('#nav nav').animate({'height': '75px'}, 150);
+
 			});
 
 		}
@@ -106,10 +107,10 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 		if ($('.home').length > 0) {
 				$(window).on('scroll', function(){
-					if ($(window).scrollTop() > $('#slider').height()){
-						$('#menu li a').removeClass('white');
+					if ($(window).scrollTop() > $('#slider-home').height()){
+						$('#menu li a, li.twitter, li.facebook').removeClass('white');
 					} else {
-						$('#menu li a').addClass('white');
+						$('#menu li a, li.twitter, li.facebook').addClass('white');
 					}
 				});
 		}
@@ -120,7 +121,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 			$('#nav').addClass('top');
 
-			$('#menu li a').addClass('white');
+			$('#menu li a, li.twitter, li.facebook').addClass('white');
 			
 			window.mySwipe = Swipe(document.getElementById('slider'), {
 				startSlide: 0,
@@ -149,6 +150,8 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 			});
 
 		} else if (  window.location.href.indexOf('collections') > -1 ){
+
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
 			
 			window.spinnaker = Swipe(document.getElementById('spinnaker'), {
 				startSlide: 0,
@@ -198,7 +201,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 			$('#nav').removeClass('top');
 
-			$('#menu li a').removeClass('white');
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
 
 			window.product = Swipe(document.getElementById('product-single'), {
 				startSlide: 0,
@@ -215,13 +218,14 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		} else if( window.location.href.indexOf('stockists') > -1 ) {
 
 			$('#nav').removeClass('top');
-			$('#menu li a').removeClass('white');
-			gmaps();
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
+			
+			gmaps(locations);
 
 		} else if( window.location.href.indexOf('shop') > -1 || window.location.href.indexOf('press') > -1 ) {
 
 			$('#nav').removeClass('top');
-			$('#menu li a').removeClass('white');
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
 		}
 
 		// init the pjaxing
@@ -238,6 +242,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 	// fade in and out the page content and scroll to the right part of the page if its an anchor link
 	$('#page').on('pjax:start', function() {
+
 		
 		$(this).fadeOut(400); 
 
@@ -245,24 +250,34 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 		console.log('pjax:success'); 
 
+		// google.maps.event.addDomListener(window, 'load', initialize);
+
+
 
 		if ($('.home').length > 0) {
+
+			$('li.twitter, li.facebook').removeClass('notHome');
+
 				$(window).on('scroll', function(){
-					if ($(window).scrollTop() > $('#slider').height()){
-						$('#menu li a').removeClass('white');
+					if ($(window).scrollTop() > $('#slider-home').height()){
+						$('#menu li a, li.twitter, li.facebook').removeClass('white');
 					} else {
-						$('#menu li a').addClass('white');
+						$('#menu li a, li.twitter, li.facebook').addClass('white');
 					}
 				});
-		} else {
+		} else if ($('.stockists').length > 0) {
 
-				$(window).on('scroll', function(){
+			gmaps(locations);
 
-					if ($(window).scrollTop() < 0) {
-						$('#menu li a').removeClass('white');
-					} 
-				});
+			$('#menu li a').css('color','black');
+			$('li.twitter, li.facebook').addClass('notHome');
 
+		} else if ($('.home').length > -1) {
+
+				$('#menu li a').css('color','black');
+				$('li.twitter, li.facebook').addClass('notHome');
+				
+				
 		}
 
 		
@@ -273,8 +288,9 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		if( $('.home').length > 0 ){ 
 	
 			$('#nav').addClass('top');
-			$('#menu li a').addClass('white');
+			$('#menu li a, li.twitter, li.facebook').addClass('white');
 
+			$('#menu li a').css('color','');
 
 			// when scrolled move the menu to the top
 			$(window).scroll(function(){
@@ -286,7 +302,7 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 
 					} else {
 						$('#nav').addClass('top');
-						$('#menu li a').removeClass('white');
+						// $('#menu li a, li.twitter, li.facebook').removeClass('white');
 					}
 				}
 			});
@@ -294,13 +310,13 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		} else if( window.location.href.indexOf('stockists') > -1 ) {
 
 			$('#nav').removeClass('top');
-			$('#menu li a').removeClass('white');
-			gmaps();
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
+			gmaps(locations);
 			
 		}  else if( window.location.href.indexOf('shop') > -1 ) {	
 
 			$('#nav').removeClass('top');
-			$('#menu li a').removeClass('white');
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
 			// displayResults(results);
 			// Refresh Snipcart products
 			Snipcart.do("refreshProducts");
@@ -308,7 +324,10 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 		
 		} else if (window.location.href.indexOf('press') > -1 || window.location.href.indexOf('collections') > -1 || window.location.href.indexOf('product') > -1  || window.location.href.indexOf('about') > -1 || window.location.href.indexOf('contact') > -1) {
 			$('#nav').removeClass('top');
-			$('#menu li a').removeClass('white');
+
+			$('#menu li a, li.twitter, li.facebook').removeClass('white');
+
+
 		}
 
 		// Timeout for swipes to load
@@ -329,6 +348,8 @@ require(['jquery', 'pjax', 'swipe', 'raphael', 'scrollTo', 'localScroll', 'easin
 				$('#slider').hide().fadeIn(1000);
 
 			} else if ( window.location.href.indexOf('collections') > -1 ){
+
+				$('#menu li a, li.twitter, li.facebook').removeClass('white');
 				
 				window.spinnaker = Swipe(document.getElementById('spinnaker'), {
 					startSlide: 0,
