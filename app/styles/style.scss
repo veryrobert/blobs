@@ -348,6 +348,7 @@ color: #fff;
     .text .left, .text .right {
       text-align: left;
       padding: 25px;
+
       h3, p {
         font: 16px/23px "ArnhemPro-Normal", Times, serif;
         -webkit-font-smoothing: antialiased;
@@ -826,7 +827,7 @@ li.heading:hover {
 }
 
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 500px) {
   #menu {
     padding-left: 15px;
   }
@@ -870,7 +871,7 @@ li.heading:hover {
   #listing .four {
     padding-left: 30px;
     .item {
-      width: 50%;
+      width: 100%;
     }
   }
   #listing .three {
@@ -905,6 +906,21 @@ li.heading:hover {
 
 .mob-hidden {}
 
+
+li.instagram {
+  height: 30px;
+  width: 30px;
+  background: url("../images/insta.svg");
+  overflow: hidden;
+  @include border-radius(4px, 4px);
+  &:hover {
+    background-position: 0% 100%;
+  }
+  margin-left: 24px;
+}
+
+
+
 li.twitter {
   height: 30px;
   width: 30px;
@@ -925,12 +941,23 @@ li.twitter.white {
   }
 }
 
+li.instagram.white {
+    background: url("../images/insta_white.svg");
+    &:hover {
+    background-position: 0% 100%;
+  }
+}
+
 li.facebook.white {
     background: url("../images/facebook_white.svg");
 }
 
 li.twitter.notHome {
     background: url("../images/twitter.svg");
+}
+
+li.instagram.notHome {
+    background: url("../images/insta.svg");
 }
 
 li.facebook.notHome {
@@ -1131,6 +1158,13 @@ margin: 15px 0;
 width: 100%;
 margin-bottom: 30px;
 padding-left: 150px;
+
+   @media screen and (max-width: 800px)  {
+      
+      padding-left: 20px;
+
+    }
+
 }
 
 hr {
@@ -1154,4 +1188,18 @@ a.tags {
   text-transform: capitalize;
 
 }
+
+.collection-title {
+
+  position: absolute;
+  left: 14.5%;
+  z-index: 9999;
+  margin-top: 25px;
+  font: 16px/23px "ArnhemPro-Normal", Times, serif;
+  color: #fff;
+
+  @media screen and (max-width: 480px)  { width: 100%; left: 0%; position: absolute;  }
+
+}
+
 
